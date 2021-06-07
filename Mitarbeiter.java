@@ -8,16 +8,21 @@
  *
  */
 
-public class Mitarbeiter {
-	
-	private String name;
-	private String firstName;
-	private int birthYear;
+public class Mitarbeiter extends Person{
 	
 	public String workID;
 	public String department;
 	public String role;
-	
+	public int hiredYear;
+
+	public Mitarbeiter(String name, String firstName, int birthYear, String workID, String department, String role, int hiredYear) {
+		super(name, firstName, birthYear);
+		this.workID = workID;
+		this.department = department;
+		this.role = role;
+		this.hiredYear = hiredYear;
+	}
+
 	/**
 	 * Konstruktor Klasse
 	 * 
@@ -28,136 +33,51 @@ public class Mitarbeiter {
 	 * @param department	: Abteilung
 	 * @param role			: Job
 	 */
-	
-	public Mitarbeiter(String name, String firstName, int birthYear, String workID, String department, String role) {
-		this.name = name;
-		this.firstName = firstName;
-		this.birthYear = birthYear;
-		this.workID = workID;
-		this.department = department;
-		this.role = role;
-				
-	}
+
 
 	/**
 	 * Getter
-	 * @return name  // Familienname MA
 	 */
-	public String getName() {
-		return name;
-	}
+	public int gethiredYear() {
+		return hiredYear;
+	} //end gethiredYear
 	
 	/**
 	 * Setter
-	 * @param name // Familienname MA
 	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	
-	/**
-	 * Getter
-	 * @return fistName // Vorname MA
-	 * 
-	 */
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	/**
-	 * Setter
-	 * @param firstName // Vorname MA
-	 * Vorname
-	 */
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	
-	/**
-	 * Getter
-	 * @return birthYear // Geburtsjahr MA
-	 */
-	public int getBirthYear() {
-		return birthYear;
-	}
-	
-	
-	/**
-	 * Setter
-	 * @param birthYear // Geburtsjahr MA
-	 */
-	public void setBirthYear(int birthYear) {
-		this.birthYear = birthYear;
-	}
-	
-	/**
-	 * Methode zur Fallunterscheidung
-	 * @param flag // zB #manufacturing
-	 */
-	public void doYourWork(String flag) {
-		
-		switch (flag) {
-		case "#manufacturing":
-			this.assembleCar();
-			break;
-		case "#accounting":
-			this.checkAccount();
-			break;			
-		case "#advertising":
-			this.postingOnSocialMedia();
-			break;
-		default:
-			this.doSomething();
-			break;
-		}		
-		
-	}
-		
+	public void sethiredYear(int hiredYear) {
+		this.hiredYear = hiredYear;
+	} //end sethiredYear
+
 	/**
 	 *  Ausgabe1 // Verhalten Luch
 	 */
-	public void hasLunch() {
-		System.out.println("Hi, I'm " + firstName + " " + name + " and I'm having lunch!");		
-	}
-	
+	protected void hasLunch() {
+		System.out.println("Hi, I'm " + getFirstName() + " " + getName() + " and I'm having lunch!");		
+	} //end hasLunch
+
+
 	/**
 	 *  Ausgabe2 //  Verhalten Arbeitsbeginn
 	 */
 
-	public void startsWork() {
-		System.out.println("Hi, I'm " + firstName + " " + name + " and I'm starting my work!");		
-	}
-	
-	
-	/**
-	 *  Ausgabe --> accounting
-	 */
-	private void checkAccount() {
-		System.out.println("Hi, I'm " + firstName + " " + name + " and I'm checking a customer's account!");		
-	}
-	
-	/**
-	 *  Ausgabe --> production
-	 */
-	private void assembleCar() {
-		System.out.println("Hi, I'm " + firstName + " " + name + " and I'm assembling a car!");		
-	}
-
-	/**
-	 *  Ausgabe --> advertising
-	 */
-	
-	private void postingOnSocialMedia() {
-		System.out.println("Hi, I'm " + firstName + " " + name + " and I'm posting a phothograph on IG!");		
-	}
+	protected void startsWork() {
+		System.out.println("Hi, I'm " + getFirstName() + " " + getName() + " and I'm starting my work!");		
+	} //end startsWork
 
 	/**
 	 *  Ausgabe --> Default
 	 */
-	private void doSomething() {
+	protected void doSomething() {
 		System.out.println("Hi, I'm doing something.");		
-	}
+	} //end doSomething
+
+	/**
+	 *  Ausgabe // Betriebszugehörigkeit
+	 */
+	protected void saySeniority() {
+		System.out.println("Hi, I'm " + getFirstName() + " " + getName() + " and I'm " + Service.rechner(this.hiredYear) + " years in this Company now.");		
+	} //end saySeniority
 
 
-}
+} // end Class
